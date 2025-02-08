@@ -47,11 +47,6 @@ export default function LoginForm() {
   const onSubmit = async (values: FormSchemaProps) => {
     try {
       const result = await loginAction(values);
-
-      if (result.error) {
-        return toast.error(result.error);
-      }
-
       toast.success(result.message);
       await signIn("credentials", values);
     } catch (error) {

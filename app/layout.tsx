@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 
 import "./globals.css";
 import { Suspense } from "react";
+import PageWrapper from "@/components/page-wrapper";
 
 export const metadata: Metadata = {
   title: "Курсове и уроци",
@@ -20,7 +21,9 @@ export default function RootLayout({
       <body>
         <Suspense>
           <ToastContainer />
-          {children}
+          <PageWrapper>
+            {children}
+          </PageWrapper>
         </Suspense>
       </body>
     </html>

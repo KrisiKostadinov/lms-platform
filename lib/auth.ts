@@ -40,20 +40,17 @@ export const { auth, handlers } = NextAuth({
     error: "/login",
   },
   callbacks: {
-    async signIn({ user }) {
-      if (!user) {
-        console.log("Sign-in failed: Invalid credentials or user not found");
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = user.role;
       }
-      return !!user;
+      return token;
     },
     async session({ token, session }) {
       if (token) {
         session.user.role = token.role;
       }
       return session;
-    },
-    redirect() {
-      return "/";
     },
   },
 });
